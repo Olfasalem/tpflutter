@@ -1,20 +1,10 @@
-# Utilisez une image de base avec Flutter pré-installé
-FROM cirrusci/flutter:stable
+FROM node:13-alpine
 
-WORKDIR /app
+ENV MONGO_DB_USERNAME=admin \
+    MONGO_DB_PWD=password
 
-# Copiez les fichiers pubspec.yaml pour résoudre les dépendances Flutter
-COPY pubspec.yaml .
-COPY pubspec.lock .
+RUN mkdir -p /home/app
 
-# Exécutez flutter pub get pour obtenir les dépendances
-RUN flutter pub get
+COPY ./app /home/app
 
-# Copiez le reste des fichiers
-COPY . .
-
-# Exécutez la commande de build Flutter (pour Android)
-RUN flutter build apk --release
-
-# Définissez le point d'entrée pour l'exécution de l'application
-ENTRYPOINT ["flutter", "run", "--release"]
+CMD ["node", "/home/app/server.js"]
