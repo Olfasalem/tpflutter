@@ -1,10 +1,20 @@
-FROM node:13-alpine
+# Utilisez l'image officielle Flutter comme base
+FROM cirrusci/flutter:latest
 
-ENV MONGO_DB_USERNAME=admin \
-    MONGO_DB_PWD=password
+# Répertoire de travail dans le conteneur
+WORKDIR /app
 
-RUN mkdir -p /home/app
+# Copier les fichiers nécessaires dans le conteneur
+COPY . .
 
-COPY ./app /home/app
+# Mettre à jour les packages pub
+RUN flutter pub get
 
-CMD ["node", "/home/app/server.js"]
+# Builder l'application Flutter pour la production
+RUN flutter build apk --release
+
+# Exposer le port nécessaire par votre application (remplacez-le par le port réel)
+EXPOSE 8083
+
+# Commande pour démarrer votre application
+CMD ["flutter", "run", "--release"]
