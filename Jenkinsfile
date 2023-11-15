@@ -24,7 +24,7 @@ pipeline {
                 script {
                     dir('lib') {
                         // Étape de construction du projet Flutter
-                        bat '"C:\\Program Files\\Git\\cmd\\git.exe" clone https://github.com/Olfasalem/tpflutter.git'
+                        bat "C:\\Program Files\\Git\\cmd\\git.exe" 
                         bat 'flutter pub get'
                         bat 'flutter build apk --release' 
 
