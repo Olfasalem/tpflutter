@@ -24,7 +24,8 @@ pipeline {
                 script {
                     dir('lib') {
                         // Étape de construction du projet Flutter
-                        // bat 'flutter pub get'
+                        bat '"C:\\Program Files\\Git\\cmd\\git.exe" clone https://github.com/Olfasalem/quiz.git'
+                        bat 'flutter pub get'
                         bat 'flutter build apk --release' 
 
                             // Étape de construction de l'image Docker
