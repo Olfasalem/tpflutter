@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-  environment {
+    environment {
         DOCKER_PATH = "C:\\Program Files\\Docker\\cli-plugins"
         FLUTTER_PATH = "C:/src/flutter/flutter_windows_3.7.7-stable/flutter/bin"
         GIT_PATH = "C:/Program Files/Git/bin"
@@ -19,7 +19,7 @@ pipeline {
                 }
             }
         }
-     
+
         stage('Build with Maven') {
             steps {
                 // Utilisation du plugin Maven pour la construction
@@ -33,6 +33,7 @@ pipeline {
                 }
             }
         }
+
         stage('Build and Dockerize') {
             steps {
                 dir('lib') {
@@ -48,3 +49,7 @@ pipeline {
             }
         }
     }
+
+    // Ajoutez d'autres directives du pipeline si nécessaire
+    // ...
+}
