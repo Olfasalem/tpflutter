@@ -20,19 +20,7 @@ pipeline {
             }
         }
 
-        stage('Build with Maven') {
-            steps {
-                // Utilisation du plugin Maven pour la construction
-                withMaven(
-                    maven: 'Maven-3.9.5',
-                    mavenLocalRepo: '.m2/repository',
-                 
-                ) {
-                    // Étapes de construction Maven
-                    sh 'mvn clean install'
-                }
-            }
-        }
+  
 
         stage('Build and Dockerize') {
             steps {
