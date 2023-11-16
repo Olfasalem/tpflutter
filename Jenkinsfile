@@ -7,6 +7,8 @@ pipeline {
         GIT_PATH = "C:/Program Files/Git/bin"
         PATH = "${DOCKER_PATH};${FLUTTER_PATH};${GIT_PATH};${PATH}"
         DOCKERHUB_CREDENTIALS = credentials('DockerHub')
+        MAVEN_HOME = "D:\\apache-maven-3.9.5"
+        PATH = "${MAVEN_HOME}\\bin;${PATH}"
     }
 
     stages {
@@ -17,12 +19,25 @@ pipeline {
                 }
             }
         }
-
+     
+        stage('Build with Maven') {
+            steps {
+                // Utilisation du plugin Maven pour la construction
+                withMaven(
+                    maven: 'Maven-3.9.5',
+                    mavenLocalRepo: '.m2/repository',
+                    mavenSettingsConfig: 'MavenSettingsConfigName',
+                    goals: 'clean install'
+                ) {
+                    // Étapes de construction Maven
+                }
+            }
+        }
         stage('Build and Dockerize') {
             steps {
                 
-                script {
-                   script {
+                
+                   
                     dir('lib') {
                         // Étape de construction du projet Flutter
                         bat "\"${GIT_PATH}/git\""
@@ -34,8 +49,8 @@ pipeline {
                         bat "docker build -t flutter-img:${BUILD_ID} ."
                 }   }
             }
-        }
-    }
+        
+    
 
     // Ajoutez d'autres directives du pipeline si nécessaire
     // ...
