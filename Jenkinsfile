@@ -30,7 +30,7 @@ pipeline {
                 
                      bat "\"${GIT_PATH}/git\" --version"
                      //bat 'flutter pub get'
-                     bat 'flutter build apk --release'
+                     //bat 'flutter build apk --release'
 
                     // Étape de construction de l'image Docker
                     // Assurez-vous que Docker est installé et accessible dans le chemin
