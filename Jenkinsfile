@@ -4,7 +4,8 @@ pipeline {
     environment {
         DOCKER_PATH = "C:\\Program Files\\Docker\\cli-plugins"
         FLUTTER_PATH = "C:/src/flutter/flutter_windows_3.7.7-stable/flutter/bin"
-        GIT_PATH = "C:/Program Files/Git/bin"
+        GIT_PATH = "C://Program Files//Git//bin"
+        
         PATH = "${DOCKER_PATH};${FLUTTER_PATH};${GIT_PATH};${PATH}"
         DOCKERHUB_CREDENTIALS = credentials('DockerHub')
         MAVEN_HOME = "D:\\apache-maven-3.9.5"
