@@ -35,23 +35,16 @@ pipeline {
         }
         stage('Build and Dockerize') {
             steps {
-                
-                
-                   
-                    dir('lib') {
-                        // Étape de construction du projet Flutter
-                        bat "\"${GIT_PATH}/git\""
-                        bat 'flutter pub get'
-                        bat 'flutter build apk --release'
+                dir('lib') {
+                    // Étape de construction du projet Flutter
+                    bat "\"${GIT_PATH}/git\""
+                    bat 'flutter pub get'
+                    bat 'flutter build apk --release'
 
-                            // Étape de construction de l'image Docker
-                        // Assurez-vous que Docker est installé et accessible dans le chemin
-                        bat "docker build -t flutter-img:${BUILD_ID} ."
-                }   }
+                    // Étape de construction de l'image Docker
+                    // Assurez-vous que Docker est installé et accessible dans le chemin
+                    bat "docker build -t flutter-img:${BUILD_ID} ."
+                }
             }
-        
-    
-
-    // Ajoutez d'autres directives du pipeline si nécessaire
-    // ...
-}
+        }
+    }
