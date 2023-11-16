@@ -5,7 +5,7 @@ pipeline {
         DOCKER_PATH = "C:\\Program Files\\Docker\\cli-plugins"
         FLUTTER_PATH = "C:/src/flutter/flutter_windows_3.7.7-stable/flutter/bin"
         SET GIT_PATH="C:/Program Files/Git/bin/git"
-        %GIT_PATH% --version
+    
 
         PATH = "${DOCKER_PATH};${FLUTTER_PATH};${GIT_PATH};${PATH}"
         DOCKERHUB_CREDENTIALS = credentials('DockerHub')
