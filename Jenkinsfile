@@ -24,7 +24,7 @@ pipeline {
                 script {
                     dir('lib') {
                         // Étape de construction du projet Flutter
-                        bat "C:\\Program Files\\Git\\cmd\\git.exe" 
+                        bat "C:/Program Files/Git/bin"
                         bat 'flutter pub get'
                         bat 'flutter build apk --release' 
 
