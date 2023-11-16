@@ -26,7 +26,7 @@ pipeline {
                 withMaven(
                     maven: 'Maven-3.9.5',
                     mavenLocalRepo: '.m2/repository',
-                    mavenSettingsConfig: 'MavenSettingsConfigName'
+                 
                 ) {
                     // Étapes de construction Maven
                     sh 'mvn clean install'
