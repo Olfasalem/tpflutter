@@ -7,7 +7,7 @@ pipeline {
         GIT_PATH = "C:/Program Files/Git/bin"
         PATH = "${DOCKER_PATH};${FLUTTER_PATH};${GIT_PATH};${PATH}"
         DOCKERHUB_CREDENTIALS = credentials('DockerHub')
-        MAVEN_HOME = "D:\\apache-maven-3.9.5"
+        def MAVEN_HOME = tool 'maven-3.9.4'
         PATH = "${MAVEN_HOME}\\bin;${PATH}"
     }
 
@@ -20,19 +20,9 @@ pipeline {
             }
         }
 
-        stage('Build with Maven') {
-            steps {
-                // Utilisation du plugin Maven pour la construction
-                withMaven(
-                    maven: 'Maven-3.9.5',
-                    mavenLocalRepo: '.m2/repository',
-                    mavenSettingsConfig: 'MavenSettingsConfigName',
-                    goals: 'clean install'
-                ) {
-                    // Étapes de construction Maven
-                }
-            }
-        }
+     stage('Build Project') {
+    bat "\"${MAVEN_HOME}\\bin\\mvn\" -B -DskipTests clean package"
+}
 
         stage('Build and Dockerize') {
             steps {
